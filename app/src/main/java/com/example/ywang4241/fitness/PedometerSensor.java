@@ -1,6 +1,7 @@
 package com.example.ywang4241.fitness;
 
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -37,6 +38,9 @@ public class PedometerSensor extends AppCompatActivity implements SensorEventLis
     //variables to allow for steps to fit in to
     String result;
     int steps = 0;
+
+    private static final String EXTRA_GOAL = "com.example.ywang4241.fitness.goal";
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -100,6 +104,12 @@ public class PedometerSensor extends AppCompatActivity implements SensorEventLis
     //will calculate calories based on steps
     private void calcCalories() {
         calories = steps * 0.045;
+    }
+
+    public static Intent newIntent(Context packageContext, int goal) {
+        Intent i = new Intent(packageContext, PedometerSensor.class);
+        i.putExtra(EXTRA_GOAL, goal);
+        return i;
     }
 
 }

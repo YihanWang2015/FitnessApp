@@ -1,5 +1,6 @@
 package com.example.ywang4241.fitness;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,9 +20,10 @@ public class GoalFragment extends Fragment {
 
     private Goal mGoal;
 
-
     private EditText mGoalEditText;
     private Button mConfirm;
+
+    private int goal;
 
 
     @Override
@@ -40,6 +42,7 @@ public class GoalFragment extends Fragment {
 
 
         mGoalEditText = (EditText)v.findViewById(R.id.goalEditText);
+        mGoalEditText.setText(0);
         mGoalEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -49,6 +52,7 @@ public class GoalFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 mGoal.setGoal(s.toString());
+                goal = Integer.parseInt(s.toString());
             }
 
             @Override
@@ -57,14 +61,17 @@ public class GoalFragment extends Fragment {
             }
         });
 
-
-
-
-
+        mConfirm = (Button) v.findViewById(R.id.confirmButton);
+        mConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (goal!=0)
+                    Intent i = PedometerSensor.newIntent(GoalFragment.this, goal);
+                    startActivityForResult(i);
+            }
+        });
 
         return v;
-
-
 
     }
 }

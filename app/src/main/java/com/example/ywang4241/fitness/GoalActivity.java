@@ -12,7 +12,9 @@ import android.widget.Toast;
 public class GoalActivity extends AppCompatActivity {
 
 
+    GoalActivity() {
 
+    }
 
 
 
