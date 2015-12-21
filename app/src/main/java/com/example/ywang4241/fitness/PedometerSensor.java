@@ -10,9 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
+// there was work done NOT on this file
 /**
  * Created by aaernie7528 on 12/21/2015.
  */
+
+//ISSUE: so this is an Activity and not connected at all to the GoalActivity or the GoalFragment.
 public class PedometerSensor extends AppCompatActivity implements SensorEventListener {
 
     //sensorManager is for utilizing hardware such as a built in pedometer
@@ -65,8 +68,6 @@ public class PedometerSensor extends AppCompatActivity implements SensorEventLis
     protected void onPause() {
         super.onPause();
         active = false;
-        // if you unregister the last listener, the hardware will stop detecting step events
-//        sensorManager.unregisterListener(this);
     }
 
     @Override
