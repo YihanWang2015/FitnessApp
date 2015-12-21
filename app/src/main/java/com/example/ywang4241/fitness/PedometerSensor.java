@@ -74,6 +74,8 @@ public class PedometerSensor extends AppCompatActivity implements SensorEventLis
         if (active) {
             result = String.valueOf(event.values[0]);
             steps = Integer.parseInt(result);
+            calcCalories();
+            calcDistance();
             updateUI();
         }
     }
@@ -89,12 +91,14 @@ public class PedometerSensor extends AppCompatActivity implements SensorEventLis
         mDistance.setText(Double.toString(distance));
     }
 
+    //will calculate Distance based on steps
     private void calcDistance() {
-
+        distance = steps * 2.5;
     }
 
+    //will calculate calories based on steps
     private void calcCalories() {
-
+        calories = steps * 0.045;
     }
 
 }
